@@ -178,7 +178,7 @@
         methods: {
             async getrecommendations(title) {
                 console.log(title);
-                this.movie = "";
+                this.movie = title;
                 this.suggestedmovies = [];
                 await axios
                     .post("http://192.168.0.128:8000/api/recommend", {
