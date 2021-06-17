@@ -155,12 +155,12 @@
                     v-for="title in suggestedmovies"
                     @click="getrecommendations(title)"
                 >
-                    {{ title }}
+                    [[ title ]]
                 </div>
             </div>
             <div class="recommendations">
                 <div class="recommendationline" v-for="title in movies">
-                    {{ title }}
+                    [[ title ]]
                 </div>
             </div>
         </div>
@@ -169,6 +169,7 @@
 <script>
     const App = {
         name: "Home",
+        delimiters: ["[[", "]]"],
         data: () => ({
             movie: "",
             suggestedmovies: [],
@@ -181,7 +182,7 @@
                 this.movie = title;
                 this.suggestedmovies = [];
                 await axios
-                    .post("http://192.168.0.128:8000/api/recommend", {
+                    .post("https://recomengine.herokuapp.com/api/recommend", {
                         title: title,
                     })
                     .then((response) => {
@@ -193,7 +194,7 @@
                 this.movies = [];
                 if (this.movie != "") {
                     await axios
-                        .post("http://192.168.0.128:8000/api/data", {
+                        .post("https://recomengine.herokuapp.com/api/data", {
                             title: this.movie,
                         })
                         .then((response) => {

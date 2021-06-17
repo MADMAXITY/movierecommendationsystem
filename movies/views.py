@@ -86,3 +86,7 @@ def recommendme(request):
             break
 
     return JsonResponse({"data": movies})
+
+
+def index(request):
+    return render(request, "index.html")
